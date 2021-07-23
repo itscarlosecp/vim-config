@@ -288,16 +288,27 @@
 			"titleBar.inactiveBackground": "#101015"
 		}
 	},
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": "comment",
+				"settings": {
+					"fontStyle": "italic"
+				}
+			}
+		]
+	},
 
 	// GENERAL SETTINGS
 	"editor.fontFamily": "Cascadia Code",
-	"editor.fontLigatures": false,
+	"editor.fontLigatures": true,
 	"editor.fontSize": 14,
 	"files.defaultLanguage": "python",
 	"security.workspace.trust.enabled": false,
 	"security.workspace.trust.startupPrompt": "never",
 	"security.workspace.trust.untrustedFiles": "open",
 	"terminal.integrated.fontFamily": "CaskaydiaCove NF",
+	"terminal.integrated.fontSize": 14,
 	"workbench.iconTheme": "material-icon-theme",
 
 	// EDITOR (BEHAVIOUR)
@@ -306,12 +317,12 @@
 	"editor.insertSpaces": false,
 	"editor.lineNumbers": "relative",
 	"editor.tabCompletion": "on",
-	"editor.tabSize": 4,
+	"editor.tabSize": 2,
 	"editor.wordWrap": "on",
+	"workbench.editor.restoreViewState": false,
 
 	// EDITOR (INTERFACE)
-	"editor.cursorSurroundingLines": 5, // Scrolloff
-	"editor.minimap.enabled": false,
+	"editor.cursorSurroundingLines": 5,
 	"editor.rename.enablePreview": false,
 	"workbench.editor.enablePreview": false,
 	"workbench.editor.limit.enabled": true,
@@ -341,31 +352,13 @@
 	"vim.incsearch": true,
 	"vim.leader": "<space>",
 	"vim.useCtrlKeys": true,
-	"vim.useSystemClipboard": true,
+	"vim.useSystemClipboard": false,
 	"vim.visualstar": true,
 	"vim.normalModeKeyBindingsNonRecursive": [
-		// GLOBALS
-		{
-			"before": ["<leader>", "x"],
-			"commands": ["workbench.action.showCommands"]
-		},
-		// FILE EXPLORER & FUZZY FINDER
-		{
-			"before": ["<leader>", "e"],
-			"commands": ["workbench.view.explorer"]
-		},
-		{
-			"before": ["<leader>", "f", "f"],
-			"commands": ["workbench.action.quickOpen"]
-		},
 		// SEARCH & REPLACE
 		{
 			"before": ["/"],
 			"commands": ["actions.find"]
-		},
-		{
-			"before": ["?"],
-			"commands": ["workbench.action.findInFiles"]
 		},
 		// DIAGNOSTICS
 		{
@@ -382,10 +375,6 @@
 		{
 			"before": ["/"],
 			"commands": ["actions.find"]
-		},
-		{
-			"before": ["?"],
-			"commands": ["workbench.action.findInFiles"]
 		}
 	],
 
@@ -425,5 +414,6 @@
 	"terminal.integrated.defaultProfile.linux": "bash",
 	"workbench.editorAssociations": {
 		"*.ipynb": "jupyter-notebook"
-	}
+	},
+	"editor.minimap.enabled": false
 }

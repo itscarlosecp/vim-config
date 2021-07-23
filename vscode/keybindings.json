@@ -57,11 +57,23 @@
 		"when": "terminalFocus && terminalProcessSupported"
 	},
 	// FILE EXPLORER
+	// Opening explorer
 	{
-		"key": "space e",
-		"command": "workbench.action.toggleSidebarVisibility",
-		"when": "filesExplorerFocus"
+		"key": "ctrl+e",
+		"command": "workbench.view.explorer",
+		"when": "vim.mode == 'Normal' && !filesExplorerFocus"
 	},
+	{
+		"key": "ctrl+e",
+		"command": "workbench.action.toggleSidebarVisibility",
+		"when": "vim.mode == 'Normal' && sideBarVisible"
+	},
+	{
+		"key": "ctrl+shift+e",
+		"command": "-workbench.view.explorer",
+		"when": "viewContainer.workbench.view.explorer.enabled"
+	},
+	// Explorer actions
 	{
 		"key": "a",
 		"command": "explorer.newFile",
@@ -112,26 +124,26 @@
 		"command": "explorer.openToSide",
 		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
 	},
-	// CLOSE WINDOW
+	// QUICK OPEN
+	{
+		"key": "ctrl+n",
+		"command": "workbench.action.quickOpenSelectNext",
+		"when": "inQuickOpen"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "workbench.action.quickOpenSelectPrevious",
+		"when": "inQuickOpen"
+	},
+	// DISABLING KEYBINDS
+	// Closing window
 	{
 		"key": "ctrl+shift+w",
 		"command": "-workbench.action.closeWindow"
 	},
-	// DISABLING KEYBINDS
+	// New file
 	{
-		"key": "space",
-		"command": "-list.toggleExpand",
-		"when": "listFocus && !inputFocus"
-	},
-	// FIND AND REPLACE ALL
-	{
-		"key": "ctrl+enter",
-		"command": "editor.action.replaceAll",
-		"when": "editorFocus && findWidgetVisible"
-	},
-	{
-		"key": "ctrl+alt+enter",
-		"command": "-editor.action.replaceAll",
-		"when": "editorFocus && findWidgetVisible"
+		"key": "ctrl+n",
+		"command": "-workbench.action.files.newUntitledFile"
 	}
 ]

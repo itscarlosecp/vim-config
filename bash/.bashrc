@@ -43,8 +43,8 @@ else
 fi
 
 # Neofetch
-if neofetch_loc="$(type -p "neofetch")" || [[ -z "neofetch_loc" ]]; then 
-	neofetch
-else
-	echo "Neofetch not installed"
-fi
+# if neofetch_loc="$(type -p "neofetch")" || [[ -z "neofetch_loc" ]]; then 
+	# neofetch
+# else
+	# echo "Neofetch not installed"
+# fi

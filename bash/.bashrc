@@ -1,7 +1,7 @@
 ### GLOBALS ###
 # Applications
 export EDITOR="nvim"
-export VISUAL="code"
+export VISUAL="$EDITOR"
 # export TERM="kitty"
 
 # Behaviour

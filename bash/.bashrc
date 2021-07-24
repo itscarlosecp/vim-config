@@ -1,6 +1,15 @@
 ### GLOBALS ###
+# Applications
+export EDITOR="nvim"
+export VISUAL="code"
+# export TERM="kitty"
 
-# Variable exports in `.bash_profile`
+# Behaviour
+export HISTCONTROL="ignoreboth"
+
+# PATH exports
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Vi Mode
 # set -o vi

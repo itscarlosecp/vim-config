@@ -1,0 +1,16 @@
+adpyke.codesnap
+alefragnani.project-manager
+bradlc.vscode-tailwindcss
+CoenraadS.bracket-pair-colorizer
+esbenp.prettier-vscode
+formulahendry.auto-rename-tag
+GitHub.github-vscode-theme
+golang.go
+golang.go
+ms-python.python
+ms-python.vscode-pylance
+ms-vscode-remote.remote-wsl
+ms-vscode.cpptools
+naumovs.color-highlight
+PKief.material-icon-theme
+vscodevim.vim

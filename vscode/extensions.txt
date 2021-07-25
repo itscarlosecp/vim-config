@@ -11,6 +11,8 @@ ms-python.python
 ms-python.vscode-pylance
 ms-vscode-remote.remote-wsl
 ms-vscode.cpptools
+ms-vscode.live-server
 naumovs.color-highlight
 PKief.material-icon-theme
 vscodevim.vim
+wwm.better-align

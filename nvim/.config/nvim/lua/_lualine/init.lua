@@ -3,7 +3,7 @@ require "lualine".setup {
 		icons_enabled = true,
 		-- theme = "tokyonight",
 		theme = "github",
-		section_separators = {'', ''},
+		section_separators = {'', ''},
 		component_separators = {'', ''},
 		disabled_filetypes = {}
 	},

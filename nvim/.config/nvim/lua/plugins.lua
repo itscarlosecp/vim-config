@@ -106,13 +106,13 @@ local plugins = function()
     end,
     event = "BufWinEnter"
   }
-  use {
-    "romgrk/barbar.nvim",
-    config = function()
-      require "_barbar"
-    end,
-    event = "BufWinEnter"
-  }
+  -- use {
+    -- "romgrk/barbar.nvim",
+    -- config = function()
+      -- require "_barbar"
+    -- end,
+    -- event = "BufWinEnter"
+  -- }
 
   -- TERMINAL
   use {

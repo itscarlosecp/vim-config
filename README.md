@@ -11,6 +11,7 @@ These files are designed to work in UNIX-based operating systems such as Linux a
 > ⚠️ Most of my folder structure is meant to be used with [GNU Stow](https://www.gnu.org/software/stow/). That's why you find nested folders inside some my dotfiles. To get to the actual config of the program you are looking for, you may have to navigate deeper into the file structure (ex.: `nvim/.config/nvim`, where the folder that actually contains my neovim config is the last `nvim` folder).
 
 - **Operating System**
+  - Windows
   - [ArcoLinuxB](https://www.arcolinux.info/downloads/)
 - **Window Manager**
   - [AwesomeWM](https://github.com/awesomeWM/awesome)

@@ -23,5 +23,9 @@ format = 'on [$symbol git:$branch]($style) '
 symbol = ''
 style = '#CE9178'
 
+[git_commit]
+format = "[$symbol\\($hash\\)]($style) [\\($tag\\)]($style)"
+symbol = ''
+
 [nodejs]
 style = '#9ECE6A'

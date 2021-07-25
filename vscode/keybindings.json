@@ -8,6 +8,23 @@
 		"key": "ctrl+shift+,",
 		"command": "workbench.action.openGlobalKeybindingsFile"
 	},
+	// FUZZY FINDER & COMMAND PALETTE
+	{
+		"key": "ctrl+;",
+		"command": "workbench.action.quickOpen"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "-workbench.action.quickOpen"
+	},
+	{
+		"key": "ctrl+shift+;",
+		"command": "workbench.action.showCommands"
+	},
+	{
+		"key": "ctrl+shift+p",
+		"command": "-workbench.action.showCommands"
+	},
 	// PANE MOVEMENT
 	{
 		"key": "ctrl+k",
@@ -37,12 +54,12 @@
 	},
 	// TERMINAL
 	{
-		"key": "ctrl+;",
+		"key": "ctrl+m",
 		"command": "workbench.action.terminal.toggleTerminal",
 		"when": "terminal.active"
 	},
 	{
-		"key": "ctrl+shift+;",
+		"key": "ctrl+shift+m",
 		"command": "workbench.action.terminal.new",
 		"when": "terminalProcessSupported"
 	},

@@ -15,15 +15,24 @@ These files are designed to work in UNIX-based operating systems such as Linux a
 - **Window Manager**
   - [AwesomeWM](https://github.com/awesomeWM/awesome)
 - **Text Editor**
+  - [VSCode](https://github.com/microsoft/vscode)
   - [Neovim](https://github.com/neovim/neovim)
   - [Vim](https://github.com/vim/vim) (when Neovim not available)
-  - [VSCode](https://github.com/microsoft/vscode) (no longer using)
 - **Terminal Emulator**
   - [Kitty](https://github.com/kovidgoyal/kitty)
   - [Windows Terminal](https://github.com/microsoft/terminal) (when using Windows)
 - **Shell**
   - Bash
   - [Starship Prompt](https://github.com/starship/starship)
+
+## VSCode
+
+The main configuration files for VSCode are `settings.json` and `keymappings.json` both located under the VSCode directory. You must copy and paste these files. To access your current JSON config files you can either run `Open Settings (JSON)` and `Open Keyboard Shortcuts (JSON)` from VSCode's Command Palette or access them through GUI. My installed extensions ids are listed in `extensions.txt`, you can install them through the extensions panel or using VSCode's CLI Tool:
+
+```bash
+cat vscode/extensions.txt | xargs code --install-extension
+```
+> ⚠️ If you are using WSL you might need to install some of these extensions from Windows and some of them from WSL. You shouldn't have any problem installing all of them from the CLI Tool, the editor will later prompt you to install them in Windows.
 
 ## Neovim
 > ⚠️ In order to use my Neovim configuration files you need to have version `0.5` or greater installed.

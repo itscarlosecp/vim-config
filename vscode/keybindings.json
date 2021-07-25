@@ -155,7 +155,7 @@
 		"key": "ctrl+alt+up",
 		"command": "-editor.action.insertCursorAbove",
 		"when": "editorTextFocus"
-	}
+	},
 	// DISABLING KEYBINDS
 	// Closing window
 	{
@@ -166,5 +166,5 @@
 	{
 		"key": "ctrl+n",
 		"command": "-workbench.action.files.newUntitledFile"
-	},
+	}
 ]

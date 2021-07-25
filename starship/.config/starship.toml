@@ -10,9 +10,9 @@ style = '#EC912D'
 
 [conda]
 format = 'via [$symbol env:$environment]($style) '
+ignore_base = false
 symbol = '🤖'
 style = '#43B02A'
-ignore_base = false
 
 [dart]
 format = 'via [$symbol($version )]($style) '
@@ -24,8 +24,33 @@ symbol = ''
 style = '#CE9178'
 
 [git_commit]
-format = '[\\($hash\\)]($style) [\\($tag\\)]($style)' 
-symbol = ''
+format = '[\\($hash\\)]($style) [\\($tag\\)]($style) '
+style = 'green'
+tag_symbol = '🔖'
+
+[git_status]
+disabled = false
+format = '[$all_status$ahead_behind]($style) '
+ahead = ''
+behind = ''
+deleted = ''
+diverged = ''
+modified = '𥉉'
+renamed = 'ﱴ'
+staged = '落'
+untracked = 'ﬤ'
+style = '#CE9178'
+
+[golang]
+format = 'via [$symbol go:($version)]($style) '
+style = '#7FD5EA'
+
+[lua]
+style = '#030380'
 
 [nodejs]
 style = '#9ECE6A'
+
+[python]
+style = '#FFD344'
+

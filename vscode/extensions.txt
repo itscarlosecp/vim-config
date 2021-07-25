@@ -2,6 +2,7 @@ adpyke.codesnap
 alefragnani.project-manager
 bradlc.vscode-tailwindcss
 CoenraadS.bracket-pair-colorizer
+earshinov.simple-alignment
 esbenp.prettier-vscode
 formulahendry.auto-rename-tag
 GitHub.github-vscode-theme
@@ -15,4 +16,3 @@ ms-vscode.live-server
 naumovs.color-highlight
 PKief.material-icon-theme
 vscodevim.vim
-wwm.better-align

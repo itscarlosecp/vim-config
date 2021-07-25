@@ -7,7 +7,6 @@ esbenp.prettier-vscode
 formulahendry.auto-rename-tag
 GitHub.github-vscode-theme
 golang.go
-golang.go
 ms-python.python
 ms-python.vscode-pylance
 ms-vscode-remote.remote-wsl

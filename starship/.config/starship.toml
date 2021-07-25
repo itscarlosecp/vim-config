@@ -1,0 +1,27 @@
+[character]
+success_symbol = "[ﬦ](bold green)"
+error_symbol = "[烈](bold red)"
+vicmd_symbol = "[](bold green)"
+
+[aws]
+format = 'on [$symbol ($profile )(\($region\) )(\[$duration\])]($style) '
+symbol = ''
+style = '#EC912D'
+
+[conda]
+format = 'via [$symbol env:$environment]($style) '
+symbol = '🤖'
+style = '#43B02A'
+ignore_base = false
+
+[dart]
+format = 'via [$symbol($version )]($style) '
+symbol = '#45D1FD'
+
+[git_branch]
+format = 'on [$symbol git:$branch]($style) '
+symbol = ''
+style = '#CE9178'
+
+[nodejs]
+style = '#9ECE6A'

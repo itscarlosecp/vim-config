@@ -23,14 +23,13 @@ font:
     family: Cascadia Code
     style: Italic
 
-  size: 10.0
+  size: 11.0
 
 colors:
   # Default colors
   primary:
     background: '0x24292e'
     foreground: '0xd1d5da'
-
 
   # Normal colors
   normal:

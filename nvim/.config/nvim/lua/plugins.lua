@@ -106,13 +106,13 @@ local plugins = function()
     end,
     event = "BufWinEnter"
   }
-  -- use {
-    -- "romgrk/barbar.nvim",
-    -- config = function()
-      -- require "_barbar"
-    -- end,
-    -- event = "BufWinEnter"
-  -- }
+  use {
+    "romgrk/barbar.nvim",
+    config = function()
+      require "_barbar"
+    end,
+    event = "BufWinEnter"
+  }
 
   -- TERMINAL
   use {
@@ -150,10 +150,6 @@ local plugins = function()
       require "gitsigns".setup()
     end,
     event = "BufWinEnter"
-  }
-  use {
-    "npxbr/glow.nvim",
-    cmd = "Glow",
   }
 
   -- PACKER

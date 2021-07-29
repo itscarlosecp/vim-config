@@ -31,14 +31,14 @@ tag_symbol = '🔖'
 [git_status]
 disabled = false
 format = '[$all_status$ahead_behind]($style) '
-ahead = ''
-behind = ''
-deleted = ''
-diverged = ''
-modified = '𥉉'
-renamed = 'ﱴ'
-staged = '落'
-untracked = 'ﬤ'
+ahead = ' '
+behind = ' '
+deleted = ' '
+diverged = ' '
+modified = '𥉉 '
+renamed = 'ﱴ '
+staged = '落 '
+untracked = 'ﬤ '
 style = '#CE9178'
 
 [golang]

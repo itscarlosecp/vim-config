@@ -128,7 +128,11 @@ local plugins = function()
     "projekt0n/github-nvim-theme",
     config = function()
       require "github-theme".setup {
-        themeStyle = "dark"
+        themeStyle = "dark",
+        commentStyle = "NONE",
+        keywordStyle = "NONE",
+        functionStyle = "NONE",
+        variableStyle = "NONE"
       }
     end
   }

@@ -23,9 +23,9 @@ map("n", "<C-L>", "<C-W><C-L>", noremap)
 map("n", "<C-H>", "<C-W><C-H>", noremap)
 
 -- TABLINE (BUFFERS)
--- map("n", "<Tab>",     ":BufferNext<CR>",     silent)
--- map("n", "<S-Tab>",   ":BufferPrevious<CR>", silent)
--- map("n", "<Leader>c", ":BufferClose<CR>",    silent)
+map("n", "<Tab>",     ":BufferNext<CR>",     silent)
+map("n", "<S-Tab>",   ":BufferPrevious<CR>", silent)
+map("n", "<Leader>c", ":BufferClose<CR>",    silent)
 
 -- LSPSAGA
 vim.cmd("inoremap <silent><expr> <C-.> compe#complete()")

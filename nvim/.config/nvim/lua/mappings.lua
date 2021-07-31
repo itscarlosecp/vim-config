@@ -13,8 +13,7 @@ map("n", "<Leader>ff", ":Telescope find_files hidden=true<CR>", silent)
 map("n", "<Leader>fs", ":Telescope lsp_workspace_symbols<CR>",   silent)
 
 -- TOGGLE TERMINAL
-map("n", "<C-t>", "<CMD>lua require 'FTerm'.toggle()<CR>", silent)
-map("t", "<C-t>", "<CMD>lua require 'FTerm'.toggle()<CR>", silent)
+map("n", "<Leader>tt", ":vs | term<CR>", silent)
 map("t", "<ESC>", "<C-\\><C-n>", silent)
 
 -- PANE MOMVEMENT

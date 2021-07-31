@@ -38,6 +38,7 @@ alias uba="cd $HOME/Documents/UBA"
 # APPLICATIONS 
 # Neovim
 alias nvim-perf="nvim --startuptime startup.log -c exit && tail -100 startup.log"
+alias nvim-hyper-perf="hyperfine 'nvim --headless +qa' --warmup 5"
 
 # Node Version Manager (NVM) 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

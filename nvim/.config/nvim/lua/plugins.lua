@@ -1,102 +1,78 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
+return require "packer".startup(function(use)
+	-- Packer can manage itself
+  use "wbthomason/packer.nvim"
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
-  execute "packadd packer.nvim"
-end
-
-local packer = require "packer"
-local use = packer.use
-
-local plugins = function()
-  -- SYNTAX
-  -- Treesitter: Better highlighting
-  -- Polyglot: Better indentation
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require "_treesitter"
-    end,
-    event = "BufRead",
-    opt = true,
-    run = ":TSUpdate"
-  }
-  use {
+	-- Syntax Highlighting
+	-- Treesitter
+	use {
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require "_treesitter"
+		end,
+		event = "BufRead",
+		run = ":TSUpdate"
+	}
+	-- Polyglot
+	use {
     "sheerun/vim-polyglot",
     event = "BufRead",
-    opt = true,
+    opt = true
   }
 
-  -- LANGUAGE SERVER PROTOCOL
-  -- (Intellisense)
-  use "neovim/nvim-lspconfig"
-  use {
-    "kabouzeid/nvim-lspinstall",
+	-- File Explorer
+	use {
+		"kyazdani42/nvim-tree.lua",
+		cmd = "NvimTreeToggle",
+		config = function()
+			require "_nvimtree"
+		end,
+	}
+
+	-- Telescope
+	use {
+		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		config = function()
+			require "_telescope"
+		end,
+		requires = {
+			"nvim-lua/popup.nvim",
+		}
+	}
+
+	-- Autocompletion / LSP
+	use "neovim/nvim-lspconfig"
+	use {
+		"kabouzeid/nvim-lspinstall",
+		config = function()
+			require "_lsp"
+		end,
+	}
+	use {
+		"hrsh7th/nvim-compe",
+		config = function()
+			require "_compe"
+		end,
+		event = "InsertEnter",
+		requires = {
+			"windwp/nvim-autopairs",
+		}
+	}
+
+	-- Interface
+	use {
+    "projekt0n/github-nvim-theme",
     config = function()
-      require "_lsp"
-    end,
+      require "github-theme".setup {
+        themeStyle = "dark",
+        commentStyle = "NONE",
+        keywordStyle = "NONE",
+        functionStyle = "NONE",
+        variableStyle = "NONE"
+      }
+    end
   }
-
-  -- DIAGNOSTICS
-  use {
-    "glepnir/lspsaga.nvim",
-    event = "BufWinEnter"
-  }
-
-  -- AUTOCOMPLETION
-  use {
-    "hrsh7th/nvim-compe",
-    config = function()
-      require "_compe"
-    end,
-    event = "InsertEnter"
-  }
-
-  -- AUTOPAIRS
-  use {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter"
-  }
-
-  -- COLORIZER
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require "colorizer".setup()
-    end,
-    event = "BufWinEnter"
-  }
-
-  -- FILE EXPLORER
-  use {
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require "_nvimtree"
-    end,
-    requires = {
-      "kyazdani42/nvim-web-devicons"
-    }
-  }
-
-  -- FUZZY FINDER
-  use {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      require "_telescope"
-    end,
-    requires = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim"
-    }
-  }
-
-  -- INTERFACE
-  -- Lualine: Statusline
-  -- Barbar: Bufferline
-  use {
+	use {
     "hoob3rt/lualine.nvim",
     config = function()
       require "_lualine"
@@ -104,41 +80,23 @@ local plugins = function()
     event = "BufWinEnter"
   }
 
-  -- TERMINAL
-  use {
-    "numtostr/FTerm.nvim",
+	-- Modules / Dependencies
+	use {
+		"kyazdani42/nvim-web-devicons",
+		module = "nvim-web-devicons"
+	}
+	use {
+		"nvim-lua/plenary.nvim",
+		module = "plenary"
+	}
+
+	-- Utilities
+	use {
+    "norcalli/nvim-colorizer.lua",
     config = function()
-      require "_fterm"
-    end
+      require "colorizer".setup()
+    end,
+    event = "BufWinEnter"
   }
+end)
 
-  -- COLORSCHEMES
-  -- use "folke/tokyonight.nvim"
-  use {
-    "projekt0n/github-nvim-theme",
-    config = function()
-      require "github-theme".setup {
-        themeStyle = "dark",
-        -- commentStyle = "NONE",
-        -- keywordStyle = "NONE",
-        -- functionStyle = "NONE",
-        -- variableStyle = "NONE"
-      }
-    end
-  }
-
-  -- UTILS
-  -- use {
-  -- "mhartington/formatter.nvim",
-  -- config = function()
-  -- require "_formatter"
-  -- end
-  -- }
-
-  -- PACKER
-  use {"wbthomason/packer.nvim", opt = true}
-end
-
-packer.startup(plugins)
-
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")

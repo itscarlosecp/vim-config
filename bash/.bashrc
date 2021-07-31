@@ -16,6 +16,9 @@ export HISTCONTROL="ignoreboth"
 # Battery
 alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to\ full|percentage"
 
+# fc uses Vim instead of Neovim
+alias fc="fc -e vi"
+
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
@@ -34,7 +37,6 @@ alias uba="cd $HOME/Documents/UBA"
 
 # APPLICATIONS 
 # Neovim
-alias vim="nvim"
 alias nvim-perf="nvim --startuptime startup.log -c exit && tail -100 startup.log"
 
 # Node Version Manager (NVM) 

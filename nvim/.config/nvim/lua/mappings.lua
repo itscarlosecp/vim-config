@@ -15,6 +15,7 @@ map("n", "<Leader>fs", ":Telescope lsp_workspace_symbols<CR>",   silent)
 -- TOGGLE TERMINAL
 map("n", "<C-t>", "<CMD>lua require 'FTerm'.toggle()<CR>", silent)
 map("t", "<C-t>", "<CMD>lua require 'FTerm'.toggle()<CR>", silent)
+map("t", "<ESC>", "<C-\\><C-n>", silent)
 
 -- PANE MOMVEMENT
 map("n", "<C-J>", "<C-W><C-J>", noremap)

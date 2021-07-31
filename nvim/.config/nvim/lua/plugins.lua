@@ -43,10 +43,7 @@ local plugins = function()
   -- DIAGNOSTICS
   use {
     "glepnir/lspsaga.nvim",
-    event = "BufWinEnter",
-    requires = {
-      "ray-x/lsp_signature.nvim",
-    }
+    event = "BufWinEnter"
   }
 
   -- AUTOCOMPLETION
@@ -106,13 +103,6 @@ local plugins = function()
     end,
     event = "BufWinEnter"
   }
-  use {
-    "romgrk/barbar.nvim",
-    config = function()
-      require "_barbar"
-    end,
-    event = "BufWinEnter"
-  }
 
   -- TERMINAL
   use {
@@ -138,23 +128,12 @@ local plugins = function()
   }
 
   -- UTILS
-  use {
-    "junegunn/vim-easy-align",
-    cmd = "EasyAlign"
-  }
   -- use {
   -- "mhartington/formatter.nvim",
   -- config = function()
   -- require "_formatter"
   -- end
   -- }
-  use {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require "gitsigns".setup()
-    end,
-    event = "BufWinEnter"
-  }
 
   -- PACKER
   use {"wbthomason/packer.nvim", opt = true}

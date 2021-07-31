@@ -1,6 +1,6 @@
 return require "packer".startup(function(use)
 	-- Packer can manage itself
-  use "wbthomason/packer.nvim"
+	use "wbthomason/packer.nvim"
 
 	-- Syntax Highlighting
 	-- Treesitter
@@ -14,10 +14,10 @@ return require "packer".startup(function(use)
 	}
 	-- Polyglot
 	use {
-    "sheerun/vim-polyglot",
-    event = "BufRead",
-    opt = true
-  }
+		"sheerun/vim-polyglot",
+		event = "BufRead",
+		opt = true
+	}
 
 	-- File Explorer
 	use {
@@ -41,12 +41,16 @@ return require "packer".startup(function(use)
 	}
 
 	-- Autocompletion / LSP
-	use "neovim/nvim-lspconfig"
+	use {
+		"neovim/nvim-lspconfig",
+		event = "BufRead"
+	}
 	use {
 		"kabouzeid/nvim-lspinstall",
 		config = function()
 			require "_lsp"
 		end,
+		event = "BufRead"
 	}
 	use {
 		"hrsh7th/nvim-compe",
@@ -61,24 +65,24 @@ return require "packer".startup(function(use)
 
 	-- Interface
 	use {
-    "projekt0n/github-nvim-theme",
-    config = function()
-      require "github-theme".setup {
-        themeStyle = "dark",
-        commentStyle = "NONE",
-        keywordStyle = "NONE",
-        functionStyle = "NONE",
-        variableStyle = "NONE"
-      }
-    end
-  }
+		"projekt0n/github-nvim-theme",
+		config = function()
+			require "github-theme".setup {
+				themeStyle = "dark",
+				commentStyle = "NONE",
+				keywordStyle = "NONE",
+				functionStyle = "NONE",
+				variableStyle = "NONE"
+			}
+		end
+	}
 	use {
-    "hoob3rt/lualine.nvim",
-    config = function()
-      require "_lualine"
-    end,
-    event = "BufWinEnter"
-  }
+		"hoob3rt/lualine.nvim",
+		config = function()
+			require "_lualine"
+		end,
+		event = "BufWinEnter"
+	}
 
 	-- Modules / Dependencies
 	use {
@@ -92,11 +96,15 @@ return require "packer".startup(function(use)
 
 	-- Utilities
 	use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require "colorizer".setup()
-    end,
-		ft = {"lua", "css", "html"},
-  }
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require "colorizer".setup()
+		end,
+		event = "BufRead"
+	}
+	use {
+		"tpope/vim-surround",
+		event = "BufRead"
+	}
 end)
 

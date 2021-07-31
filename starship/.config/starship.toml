@@ -3,6 +3,9 @@ success_symbol = "[ﬦ](bold green)"
 error_symbol = "[烈](bold red)"
 vicmd_symbol = "[](bold green)"
 
+[cmd_duration]
+min_time = 500
+
 [aws]
 format = 'on [$symbol ($profile )(\($region\) )(\[$duration\])]($style) '
 symbol = ''

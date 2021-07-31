@@ -129,10 +129,10 @@ local plugins = function()
     config = function()
       require "github-theme".setup {
         themeStyle = "dark",
-        commentStyle = "NONE",
-        keywordStyle = "NONE",
-        functionStyle = "NONE",
-        variableStyle = "NONE"
+        -- commentStyle = "NONE",
+        -- keywordStyle = "NONE",
+        -- functionStyle = "NONE",
+        -- variableStyle = "NONE"
       }
     end
   }

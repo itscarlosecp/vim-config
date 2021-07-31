@@ -59,7 +59,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 local function common_on_attach()
   require "lsp_signature".on_attach {
     bind = true,
-    use_lspsaga = true
+    use_lspsaga = false
   }
 end
 

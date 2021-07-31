@@ -41,14 +41,19 @@ return require "packer".startup(function(use)
 	}
 
 	-- Autocompletion / LSP
-	use {
-		"neovim/nvim-lspconfig",
-		event = "BufRead"
-	}
+	use { "neovim/nvim-lspconfig" }
 	use {
 		"kabouzeid/nvim-lspinstall",
 		config = function()
 			require "_lsp"
+		end
+	}
+	use { 
+		"glepnir/lspsaga.nvim" ,
+		config = function()
+			require "lspsaga".init_lsp_saga {
+				border_style = "round"
+			}
 		end,
 		event = "BufRead"
 	}
@@ -60,6 +65,7 @@ return require "packer".startup(function(use)
 		event = "InsertEnter",
 		requires = {
 			"windwp/nvim-autopairs",
+			"ray-x/lsp_signature.nvim"
 		}
 	}
 

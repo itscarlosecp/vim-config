@@ -13,11 +13,11 @@ return require "packer".startup(function(use)
 		run = ":TSUpdate"
 	}
 	-- Polyglot
-	use {
-		"sheerun/vim-polyglot",
-		event = "BufRead",
-		opt = true
-	}
+	-- use {
+		-- "sheerun/vim-polyglot",
+		-- event = "BufRead",
+		-- opt = true
+	-- }
 
 	-- File Explorer
 	use {
@@ -70,18 +70,7 @@ return require "packer".startup(function(use)
 	}
 
 	-- Interface
-	use {
-		"projekt0n/github-nvim-theme",
-		config = function()
-			require "github-theme".setup {
-				themeStyle = "dimmed",
-				commentStyle = "NONE",
-				keywordStyle = "NONE",
-				functionStyle = "NONE",
-				variableStyle = "NONE"
-			}
-		end
-	}
+	use "projekt0n/github-nvim-theme"
 	use {
 		"hoob3rt/lualine.nvim",
 		config = function()
@@ -101,16 +90,16 @@ return require "packer".startup(function(use)
 	}
 
 	-- Utilities
-	use {
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require "colorizer".setup()
-		end,
-		event = "BufRead"
-	}
+	-- use {
+		-- "norcalli/nvim-colorizer.lua",
+		-- config = function()
+			-- require "colorizer".setup()
+		-- end,
+		-- event = "BufRead"
+	-- }
 	use {
 		"tpope/vim-surround",
-		event = "BufRead"
+		cmd = "S"
 	}
 end)
 

@@ -13,7 +13,7 @@
 	},
 
 	// GENERAL SETTINGS
-	"editor.fontFamily": "'Cascadia Code', 'CaskaydiaCove NF'",
+	"editor.fontFamily": "Cascadia Code",
 	"editor.fontLigatures": true,
 	"editor.fontSize": 14,
 	"editor.minimap.enabled": false,
@@ -29,7 +29,6 @@
 	// EDITOR (BEHAVIOUR)
 	"editor.detectIndentation": true,
 	"editor.formatOnSave": true,
-	"editor.insertSpaces": false,
 	"editor.lineNumbers": "relative",
 	"editor.tabCompletion": "on",
 	"editor.wordWrap": "on",
@@ -95,6 +94,7 @@
 
 	// LANGUAGE SPECIFICS
 	// Styling
+	"editor.insertSpaces": false,
 	"editor.tabSize": 2,
 	"[c]": { "editor.tabSize": 4 },
 	"[cpp]": { "editor.tabSize": 4 },
@@ -103,14 +103,8 @@
 	"[go]": { "editor.tabSize": 4 },
 	"[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 	"[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.tabSize": 4
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.tabSize": 4
-	},
+	"[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+	"[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.defaultFormatter": "ms-python.python",
@@ -140,5 +134,6 @@
 	"prettier.useTabs": true,
 
 	// OTHERS
-	"terminal.integrated.defaultProfile.linux": "bash"
+	"terminal.integrated.defaultProfile.linux": "bash",
+	"editor.renderWhitespace": "none"
 }

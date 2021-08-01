@@ -8,23 +8,6 @@
 		"key": "ctrl+shift+,",
 		"command": "workbench.action.openGlobalKeybindingsFile"
 	},
-	// FUZZY FINDER & COMMAND PALETTE
-	{
-		"key": "ctrl+;",
-		"command": "workbench.action.quickOpen"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "-workbench.action.quickOpen"
-	},
-	{
-		"key": "ctrl+shift+;",
-		"command": "workbench.action.showCommands"
-	},
-	{
-		"key": "ctrl+shift+p",
-		"command": "-workbench.action.showCommands"
-	},
 	// PANE MOVEMENT
 	{
 		"key": "ctrl+k",
@@ -54,12 +37,12 @@
 	},
 	// TERMINAL
 	{
-		"key": "ctrl+m",
+		"key": "ctrl+t",
 		"command": "workbench.action.terminal.toggleTerminal",
 		"when": "terminal.active"
 	},
 	{
-		"key": "ctrl+shift+m",
+		"key": "ctrl+shift+t",
 		"command": "workbench.action.terminal.new",
 		"when": "terminalProcessSupported"
 	},
@@ -78,17 +61,12 @@
 	{
 		"key": "ctrl+e",
 		"command": "workbench.view.explorer",
-		"when": "!filesExplorerFocus"
+		"when": "vim.mode != 'Insert' && !filesExplorerFocus"
 	},
 	{
 		"key": "ctrl+e",
 		"command": "workbench.action.toggleSidebarVisibility",
-		"when": "sideBarVisible"
-	},
-	{
-		"key": "ctrl+shift+e",
-		"command": "-workbench.view.explorer",
-		"when": "viewContainer.workbench.view.explorer.enabled"
+		"when": "vim.mode == 'Normal' && sideBarVisible"
 	},
 	// Explorer actions
 	{
@@ -183,5 +161,16 @@
 	{
 		"key": "ctrl+n",
 		"command": "-workbench.action.files.newUntitledFile"
+	},
+	// Terminal
+	{
+		"key": "ctrl+`",
+		"command": "-workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+shift+`",
+		"command": "-workbench.action.terminal.new",
+		"when": "terminalProcessSupported"
 	}
 ]

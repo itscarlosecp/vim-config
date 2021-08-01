@@ -2,6 +2,7 @@
 vim.g.nvim_tree_ignore   = {"node_modules", ".cache", "*.o"}
 vim.g.nvim_tree_follow   = 1 -- (Automatically) show current file in explorer
 vim.g.nvim_tree_tab_open = 1 -- Keep explorer open when switching tabs
+vim.g.nvim_tree_icon_padding = " "
 
 -- Icons
 vim.g.nvim_tree_icons = {

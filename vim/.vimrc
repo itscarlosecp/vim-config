@@ -22,34 +22,27 @@ set splitbelow         " Horizontal splits will automatically be below
 set splitright         " Vertical splits will automatically be to the right
 set termguicolors      " 256 color for terminal nvim
 
-" Plug Install
-call plug#begin('$HOME/.vim/plugged')
-" Syntax
-Plug 'sheerun/vim-polyglot'
-
-" Interface
-Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
-
-" Fuzzy Finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Utilities
-Plug 'tpope/vim-surround'
-call plug#end()
-
 set bg=dark
-colorscheme gruvbox
-autocmd FileType yaml,yml let b:autoformat_autoindent=0
 
+" Mappings
 let mapleader=' '
-nnoremap <leader>e :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-nnoremap <leader>ff :Files<CR>
 
+" Panes Movement
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n><CR>
+
+" The Primeagen Recommendations
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap J mzJ`z
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 

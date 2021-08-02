@@ -13,7 +13,7 @@ map("n", "<Leader>ff", ":Telescope find_files hidden=true<CR>", silent)
 map("n", "<Leader>fs", ":Telescope lsp_workspace_symbols<CR>",   silent)
 
 -- Terminal
-map("n", "<Leader>tt", ":vs | term<CR>", silent)
+map("n", "<Leader>tt", ":vs | term<CR> | i", silent)
 map("t", "<ESC>", "<C-\\><C-n>", silent)
 
 -- Panes Movement

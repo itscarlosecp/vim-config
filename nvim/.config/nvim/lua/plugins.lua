@@ -14,9 +14,9 @@ return require "packer".startup(function(use)
 	}
 	-- Polyglot
 	-- use {
-		-- "sheerun/vim-polyglot",
-		-- event = "BufRead",
-		-- opt = true
+	-- "sheerun/vim-polyglot",
+	-- event = "BufRead",
+	-- opt = true
 	-- }
 
 	-- File Explorer
@@ -70,13 +70,28 @@ return require "packer".startup(function(use)
 	}
 
 	-- Interface
-	use "projekt0n/github-nvim-theme"
+	use {"projekt0n/github-nvim-theme", 
+		config = function()
+			require "github-theme".setup {
+				themeStyle = "dark",
+			}
+		end
+	}
 	use {
 		"hoob3rt/lualine.nvim",
 		config = function()
 			require "_lualine"
 		end,
 		event = "BufWinEnter"
+	}
+
+	-- Formatting
+	use {
+		"mhartington/formatter.nvim",
+		cmd = "Format",
+		config = function()
+			require "_formatter"
+		end
 	}
 
 	-- Modules / Dependencies
@@ -90,13 +105,13 @@ return require "packer".startup(function(use)
 	}
 
 	-- Utilities
-	-- use {
-		-- "norcalli/nvim-colorizer.lua",
-		-- config = function()
-			-- require "colorizer".setup()
-		-- end,
-		-- event = "BufRead"
-	-- }
+	use {
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require "colorizer".setup()
+		end,
+		event = "BufRead"
+	}
 	use {
 		"tpope/vim-surround",
 		cmd = "S"

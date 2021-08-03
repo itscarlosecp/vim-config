@@ -1,62 +1,33 @@
-return require "packer".startup(function(use)
-	-- Packer can manage itself
-	use "wbthomason/packer.nvim"
-
-	-- Syntax Highlighting
-	-- Treesitter
+return require'packer'.startup({function(use)
+	-- LSP
+	use 'neovim/nvim-lspconfig'
 	use {
-		"nvim-treesitter/nvim-treesitter",
+		'kabouzeid/nvim-lspinstall',
 		config = function()
-			require "_treesitter"
-		end,
-		event = "BufRead",
-		run = ":TSUpdate"
-	}
-	-- Polyglot
-	-- use {
-	-- "sheerun/vim-polyglot",
-	-- event = "BufRead",
-	-- opt = true
-	-- }
-
-	-- File Explorer
-	use {
-		"kyazdani42/nvim-tree.lua",
-		cmd = "NvimTreeToggle",
-		config = function()
-			require "_nvimtree"
-		end,
-	}
-
-	-- Telescope
-	use {
-		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		config = function()
-			require "_telescope"
-		end,
-		requires = {
-			"nvim-lua/popup.nvim",
-		}
-	}
-
-	-- Autocompletion / LSP
-	use { "neovim/nvim-lspconfig" }
-	use {
-		"kabouzeid/nvim-lspinstall",
-		config = function()
-			require "_lsp"
+			require '_lsp'
 		end
 	}
 	use {
-		"glepnir/lspsaga.nvim" ,
+		'glepnir/lspsaga.nvim',
 		config = function()
-			require "lspsaga".init_lsp_saga {
-				border_style = "round"
-			}
-		end,
-		event = "BufRead"
+			require '_lspsaga'
+		end
 	}
+
+	-- Treesitter
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		config = function()
+			require '_treesitter'
+		end,
+		event = 'BufRead',
+		requires = {
+			'windwp/nvim-ts-autotag'
+		},
+		run = ':TSUpdate'
+	}
+
+	-- Autocompletion
 	use {
 		"hrsh7th/nvim-compe",
 		config = function()
@@ -64,57 +35,116 @@ return require "packer".startup(function(use)
 		end,
 		event = "InsertEnter",
 		requires = {
-			"windwp/nvim-autopairs",
-			"ray-x/lsp_signature.nvim"
+			'windwp/nvim-autopairs',
+			'ray-x/lsp_signature.nvim'
 		}
 	}
 
-	-- Interface
-	use {"projekt0n/github-nvim-theme",
-		config = function()
-			require "github-theme".setup {
-				themeStyle = "dark",
-			}
-		end
-	}
+	-- Nvimtree
 	use {
-		"hoob3rt/lualine.nvim",
+		'kyazdani42/nvim-tree.lua',
+		cmd = 'NvimTreeToggle',
 		config = function()
-			require "_lualine"
+			require'_nvimtree'
 		end,
-		event = "BufWinEnter"
 	}
 
-	-- Formatting
+	-- Telescope
 	use {
-		"mhartington/formatter.nvim",
-		cmd = "Format",
+		'nvim-telescope/telescope.nvim',
+		cmd = 'Telescope',
 		config = function()
-			require "_formatter"
+			require'_telescope'
+		end,
+		requires = {
+			'nvim-lua/popup.nvim',
+			'nvim-lua/plenary.nvim'
+		},
+	}
+
+	-- Terminal
+	use {
+		"numtostr/FTerm.nvim",
+    config = function()
+			require'_fterm'
 		end
 	}
 
-	-- Modules / Dependencies
+	-- Colorscheme
 	use {
-		"kyazdani42/nvim-web-devicons",
-		module = "nvim-web-devicons"
+		'folke/tokyonight.nvim',
+		config = function()
+			vim.cmd[[colorscheme tokyonight]]
+		end
 	}
+
+	-- Statusline
 	use {
-		"nvim-lua/plenary.nvim",
-		module = "plenary"
+		'hoob3rt/lualine.nvim',
+		config = function()
+			require'_lualine'
+		end,
+		event = 'BufWinEnter'
+	}
+
+	-- Gitsigns
+	use {
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require'gitsigns'
+		end,
+		event = 'BufReadPre',
+	}
+
+	-- Trouble
+	use {
+		'folke/trouble.nvim',
+		cmd = 'Trouble',
+		config = function()
+			require'trouble'.setup()
+		end
+	}
+
+	-- Formatter
+	use {
+		'mhartington/formatter.nvim',
+		cmd = 'Format',
+		config = function()
+			require'_formatter'
+		end
 	}
 
 	-- Utilities
 	use {
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require "colorizer".setup()
-		end,
-		event = "BufRead"
+		'tpope/vim-surround',
+		cmd = 'S'
 	}
 	use {
-		"tpope/vim-surround",
-		cmd = "S"
+		'junegunn/vim-easy-align',
+		keys = '<Plug>(EasyAlign)'
 	}
-end)
+	use {
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require'colorizer'.setup()
+		end,
+		event = 'BufRead'
+	}
+
+	-- Modules
+	use {
+		'kyazdani42/nvim-web-devicons',
+		module = 'nvim-web-devicons',
+	}
+
+	-- Packer can manage itself
+	use 'wbthomason/packer.nvim'
+end,
+config = {
+	display = {
+		open_fn = function()
+			return require'packer.util'.float{ border = 'single' }
+		end
+	}
+}})
 

@@ -1,7 +1,7 @@
 -- GLOBALS
 vim.cmd("syntax enable")   -- Enables syntax highlighting
 vim.opt.hidden     = true  -- Dont unload buffer when its abandoned
-vim.opt.wrap       = false -- Dont wrap long lines
+vim.opt.wrap       = true -- Dont wrap long lines
 vim.opt.ignorecase = true  -- Case insensitive search
 
 -- AUTOCOMPLETION
@@ -14,6 +14,7 @@ vim.opt.tabstop    = 2     -- Insert 2 spaces for a <TAB> press
 vim.opt.shiftwidth = 2     -- Change the number of space characters inserted for indentation
 vim.opt.expandtab  = false -- Converts spaces to tabs
 vim.opt.autoindent = true  -- Good auto indent
+vim.opt.textwidth = 80
 
 -- EDITING
 vim.opt.number         = true     -- Show line numbers
@@ -21,7 +22,7 @@ vim.opt.relativenumber = true     -- Show line relative numbers
 vim.opt.scrolloff      = 5        -- Scroll before last visible line
 vim.opt.cursorline     = true     -- highlight current line
 vim.cmd("set iskeyword+=-")       -- Treat dash separated words as a word text object
-vim.cmd("set formatoptions-=cro") -- Stop newline continution of comments
+-- vim.cmd("set formatoptions-=cro") -- Stop newline continution of comments
 
 -- INTERFACE
 vim.opt.splitbelow    = true -- Horizontal splits will automatically be below

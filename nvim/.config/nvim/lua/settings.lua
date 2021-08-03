@@ -22,7 +22,6 @@ vim.opt.relativenumber = true     -- Show line relative numbers
 vim.opt.scrolloff      = 5        -- Scroll before last visible line
 vim.opt.cursorline     = true     -- highlight current line
 vim.cmd("set iskeyword+=-")       -- Treat dash separated words as a word text object
--- vim.cmd("set formatoptions-=cro") -- Stop newline continution of comments
 
 -- INTERFACE
 vim.opt.splitbelow    = true -- Horizontal splits will automatically be below

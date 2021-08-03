@@ -15,7 +15,6 @@ set number             " Show line numbers
 set relativenumber     " Show line relative numbers
 set scrolloff=5        " Scroll before last visible line
 set iskeyword+=-       " Treat dash separated words as a word text object
-set formatoptions-=cro " Stop newline continution of comments
 
 " Interface
 set splitbelow         " Horizontal splits will automatically be below

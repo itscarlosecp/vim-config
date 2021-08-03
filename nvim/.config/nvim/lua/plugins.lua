@@ -48,7 +48,7 @@ return require "packer".startup(function(use)
 			require "_lsp"
 		end
 	}
-	use { 
+	use {
 		"glepnir/lspsaga.nvim" ,
 		config = function()
 			require "lspsaga".init_lsp_saga {
@@ -70,7 +70,7 @@ return require "packer".startup(function(use)
 	}
 
 	-- Interface
-	use {"projekt0n/github-nvim-theme", 
+	use {"projekt0n/github-nvim-theme",
 		config = function()
 			require "github-theme".setup {
 				themeStyle = "dark",

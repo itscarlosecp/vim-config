@@ -108,9 +108,12 @@ return require'packer'.startup({function(use)
 	use {
 		'lewis6991/gitsigns.nvim',
 		config = function()
-			require'gitsigns'
+			require'gitsigns'.setup()
 		end,
 		event = 'BufReadPre',
+		requires = {
+			'nvim-lua/plenary.nvim'
+		}
 	}
 
 	-- Trouble
@@ -151,11 +154,11 @@ return require'packer'.startup({function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 end,
-	config = {
-		display = {
-			open_fn = function()
-				return require'packer.util'.float{ border = 'single' }
-			end
-		}
-	}})
+config = {
+	display = {
+		open_fn = function()
+			return require'packer.util'.float{ border = 'single' }
+		end
+	}
+}})
 

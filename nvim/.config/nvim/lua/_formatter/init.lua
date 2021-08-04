@@ -20,9 +20,19 @@ local function gofmt()
 	}
 end
 
+local function clang_format()
+	return {
+		exe = 'clang-format',
+		args = {vim.api.nvim_buf_get_name(0)},
+		stdin = true
+	}
+end
+
 require 'formatter'.setup {
   logging = false,
   filetype = {
+		c = {clang_format},
+		cpp = {clang_format},
     css = {prettier},
     html = {prettier},
     javascript = {prettier},

@@ -18,7 +18,7 @@ vnoremap <C-c> "*y
 
 " Main Plugins
 nnoremap <silent> <leader>e <cmd>NvimTreeToggle<CR>
-nnoremap <silent> <leader>ff <cmd>Telescope find_files hidden = true<CR>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files hidden=true<CR>
 nnoremap <silent> <C-t> <cmd>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <C-t> <cmd>lua require'FTerm'.toggle()<CR>
 

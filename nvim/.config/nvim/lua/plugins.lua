@@ -54,12 +54,10 @@ return require'packer'.startup({function(use)
 	-- Nvimtree
 	use {
 		'kyazdani42/nvim-tree.lua',
+		cmd = 'NvimTreeToggle',
 		config = function()
 			require'_nvimtree'
 		end,
-		requires = {
-			'kyazdani42/nvim-web-devicons'
-		}
 	}
 
 	-- Telescope
@@ -71,9 +69,8 @@ return require'packer'.startup({function(use)
 		end,
 		requires = {
 			'nvim-lua/popup.nvim',
-			'nvim-lua/plenary.nvim',
-			'kyazdani42/nvim-web-devicons'
-		}
+			'nvim-lua/plenary.nvim'
+		},
 	}
 
 	-- Terminal
@@ -147,14 +144,20 @@ return require'packer'.startup({function(use)
 		event = 'BufRead'
 	}
 
+	-- Modules
+	use {
+		'kyazdani42/nvim-web-devicons',
+		module = 'nvim-web-devicons',
+	}
+
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 end,
-config = {
-	display = {
-		open_fn = function()
-			return require'packer.util'.float{ border = 'single' }
-		end
-	}
-}})
+	config = {
+		display = {
+			open_fn = function()
+				return require'packer.util'.float{ border = 'single' }
+			end
+		}
+	}})
 

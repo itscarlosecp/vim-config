@@ -1,5 +1,5 @@
 vim.g.nvim_tree_ignore = {'node_modules', '.cache', '*.o'}
-vim.g.nvim_tree_follow = 1 
+vim.g.nvim_tree_follow = 1
 
 vim.g.nvim_tree_icons = {
 	default = '',

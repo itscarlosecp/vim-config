@@ -1,3 +1,13 @@
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+	fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+	execute 'packadd packer.nvim'
+end
+
 return require'packer'.startup({function(use)
 	-- LSP
 	use 'neovim/nvim-lspconfig'
@@ -21,19 +31,20 @@ return require'packer'.startup({function(use)
 			require '_treesitter'
 		end,
 		event = 'BufRead',
-		requires = {
-			'windwp/nvim-ts-autotag'
-		},
 		run = ':TSUpdate'
+	}
+	use {
+		'windwp/nvim-ts-autotag',
+		after = 'nvim-treesitter'
 	}
 
 	-- Autocompletion
 	use {
-		"hrsh7th/nvim-compe",
+		'hrsh7th/nvim-compe',
 		config = function()
-			require "_compe"
+			require '_compe'
 		end,
-		event = "InsertEnter",
+		event = 'InsertEnter',
 		requires = {
 			'windwp/nvim-autopairs',
 			'ray-x/lsp_signature.nvim'
@@ -64,17 +75,19 @@ return require'packer'.startup({function(use)
 
 	-- Terminal
 	use {
-		"numtostr/FTerm.nvim",
-    config = function()
+		'numtostr/FTerm.nvim',
+		config = function()
 			require'_fterm'
 		end
 	}
 
 	-- Colorscheme
 	use {
-		'folke/tokyonight.nvim',
+		'projekt0n/github-nvim-theme',
 		config = function()
-			vim.cmd[[colorscheme tokyonight]]
+			require 'github-theme'.setup {
+				themeStyle = 'dark',
+			}
 		end
 	}
 
@@ -140,11 +153,11 @@ return require'packer'.startup({function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 end,
-config = {
-	display = {
-		open_fn = function()
-			return require'packer.util'.float{ border = 'single' }
-		end
-	}
-}})
+	config = {
+		display = {
+			open_fn = function()
+				return require'packer.util'.float{ border = 'single' }
+			end
+		}
+	}})
 

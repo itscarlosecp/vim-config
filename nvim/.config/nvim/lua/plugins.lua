@@ -58,6 +58,9 @@ return require'packer'.startup({function(use)
 		config = function()
 			require'_nvimtree'
 		end,
+		requires = {
+			'kyazdani42/nvim-web-devicons'
+		}
 	}
 
 	-- Telescope
@@ -69,7 +72,8 @@ return require'packer'.startup({function(use)
 		end,
 		requires = {
 			'nvim-lua/popup.nvim',
-			'nvim-lua/plenary.nvim'
+			'nvim-lua/plenary.nvim',
+			'kyazdani42/nvim-web-devicons'
 		},
 	}
 
@@ -142,12 +146,6 @@ return require'packer'.startup({function(use)
 			require'colorizer'.setup()
 		end,
 		event = 'BufRead'
-	}
-
-	-- Modules
-	use {
-		'kyazdani42/nvim-web-devicons',
-		module = 'nvim-web-devicons',
 	}
 
 	-- Packer can manage itself

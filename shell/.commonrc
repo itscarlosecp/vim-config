@@ -2,7 +2,6 @@
 # Applications
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
-export TERM="kitty"
 
 # Others
 export HISTCONTROL="ignoreboth"

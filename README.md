@@ -17,7 +17,7 @@ These files are designed to work in UNIX-based operating systems such as Linux a
   - [AwesomeWM](https://github.com/awesomeWM/awesome)
 - **Text Editor**
   - [VSCode](https://github.com/microsoft/vscode)
-  - [Neovim](https://github.com/neovim/neovim) (Config files: [itscarlosecp.nvim](https://github.com/itscarlosecp/itscarlosecp.nvim))
+  - [Neovim](https://github.com/neovim/neovim)
   - [Vim](https://github.com/vim/vim) (when Neovim not available)
 - **Terminal Emulator**
   - [Kitty](https://github.com/kovidgoyal/kitty)

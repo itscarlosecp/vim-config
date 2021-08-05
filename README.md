@@ -17,7 +17,7 @@ These files are designed to work in UNIX-based operating systems such as Linux a
   - [AwesomeWM](https://github.com/awesomeWM/awesome)
 - **Text Editor**
   - [VSCode](https://github.com/microsoft/vscode)
-  - [Neovim](https://github.com/neovim/neovim)
+  - [Neovim](https://github.com/neovim/neovim) (Config files: [itscarlosecp.nvim](https://github.com/itscarlosecp/itscarlosecp.nvim))
   - [Vim](https://github.com/vim/vim) (when Neovim not available)
 - **Terminal Emulator**
   - [Kitty](https://github.com/kovidgoyal/kitty)
@@ -31,16 +31,3 @@ These files are designed to work in UNIX-based operating systems such as Linux a
 The main configuration files for VSCode are `settings.json` and `keymappings.json` both located under the VSCode directory. You must copy and paste these files. To access your current JSON config files you can either run `Open Settings (JSON)` and `Open Keyboard Shortcuts (JSON)` from VSCode's Command Palette or access them through GUI. My installed extensions ids are listed in `extensions.txt`, you can install them through the extensions panel or using VSCode's CLI Tool: `code --install-extension <extension_id>`
 
 > ⚠️ If you are using WSL you might need to install some of these extensions from Windows and some of them from WSL. You shouldn't have any problem installing all of them from the CLI Tool, the editor will later prompt you to install them in Windows.
-
-## Neovim
-> ⚠️ In order to use my Neovim configuration files you need to have version `0.5` or greater installed.
-
-### Dependencies
-- [GCC](https://gcc.gnu.org/): Required by [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to install and compile language parsers (to improve syntax highlighting).
-
-### Configuration
-- **Plugins:** Plugins are managed by [Packer](https://github.com/wbthomason/packer.nvim). To install the plugins after downloading my config files, you must run `:PackerInstall` or `:PackerSync`. You can find the plugins list inside the `plugins.lua` file inside the `nvim` config folder. If you make some changes to this file, you will have to compile the plugins again. Find more information about this in the official documentation.
-
-- **Autocompletion:** Intellisense and autocompletion are provided using the official [Neovim LSP API](https://github.com/neovim/nvim-lspconfig). By default, no language servers are installed, you will have to install them manually using [LSPInstall](https://github.com/kabouzeid/nvim-lspinstall) (ex.: `:LspInstall python`).
-
-- **Formatting:** File auto-formatting is managed by external formatters. This allows you to use any formatting programm you want externally. Formatters can be configured in the `nvim/lua/_formatter/init.lua` file. Remember to add the filetype you want at the autocommands section at the end of this file.

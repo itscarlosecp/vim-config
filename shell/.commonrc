@@ -13,6 +13,7 @@ alias ls="lsd"
 alias grep="grep --color=auto"
 
 # Quick Access
+alias neovim="cd $HOME/.config/nvim"
 alias .files="cd $HOME/.dotfiles"
 alias dev="cd $HOME/Documents/dev"
 alias uba="cd $HOME/Documents/UBA"

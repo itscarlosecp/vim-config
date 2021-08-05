@@ -31,3 +31,7 @@ These files are designed to work in UNIX-based operating systems such as Linux a
 The main configuration files for VSCode are `settings.json` and `keymappings.json` both located under the VSCode directory. You must copy and paste these files. To access your current JSON config files you can either run `Open Settings (JSON)` and `Open Keyboard Shortcuts (JSON)` from VSCode's Command Palette or access them through GUI. My installed extensions ids are listed in `extensions.txt`, you can install them through the extensions panel or using VSCode's CLI Tool: `code --install-extension <extension_id>`
 
 > ⚠️ If you are using WSL you might need to install some of these extensions from Windows and some of them from WSL. You shouldn't have any problem installing all of them from the CLI Tool, the editor will later prompt you to install them in Windows.
+
+## Neovim
+
+I used to keep my Neovim config files in this repo. However, since those where to dotfiles I modified the most, I decided to move them to their very own repo. You can check out my Neovim config files here: [itscarlosecp.nvim](https://github.com/itscarlosecp/itscarlosecp.nvim).

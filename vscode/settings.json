@@ -38,10 +38,10 @@
 	"editor.cursorSurroundingLines": 5,
 	"editor.rename.enablePreview": false,
 	"workbench.editor.enablePreview": false,
-	"workbench.editor.limit.enabled": true,
-	"workbench.editor.limit.perEditorGroup": true,
-	"workbench.editor.limit.value": 2,
-	"workbench.editor.showTabs": false,
+	// "workbench.editor.limit.enabled": true,
+	// "workbench.editor.limit.perEditorGroup": true,
+	// "workbench.editor.limit.value": 2,
+	// "workbench.editor.showTabs": false,
 	"workbench.list.automaticKeyboardNavigation": false, // Disable explorer filtering
 
 	// FILE EXPLORER
@@ -69,12 +69,7 @@
 	"vim.useSystemClipboard": false,
 	"vim.visualstar": true,
 	"vim.normalModeKeyBindingsNonRecursive": [
-		// SEARCH & REPLACE
-		{
-			"before": ["/"],
-			"commands": ["actions.find"]
-		},
-		// DIAGNOSTICS
+		// Diagnostics
 		{
 			"before": ["[", "g"],
 			"commands": ["editor.action.marker.next"]
@@ -82,13 +77,6 @@
 		{
 			"before": ["]", "g"],
 			"commands": ["editor.action.marker.prev"]
-		}
-	],
-	"vim.visualModeKeyBindingsNonRecursive": [
-		// SEARCH & REPLACE
-		{
-			"before": ["/"],
-			"commands": ["actions.find"]
 		}
 	],
 
@@ -135,5 +123,5 @@
 
 	// OTHERS
 	"terminal.integrated.defaultProfile.linux": "bash",
-	"editor.renderWhitespace": "none"
+	"terminal.integrated.defaultLocation": "editor"
 }

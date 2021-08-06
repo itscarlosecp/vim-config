@@ -8,6 +8,27 @@
 		"key": "ctrl+shift+,",
 		"command": "workbench.action.openGlobalKeybindingsFile"
 	},
+	// EDITORS
+	{
+		"key": "tab",
+		"command": "workbench.action.nextEditor",
+		"when": "vim.mode == 'Normal'"
+	},
+	{
+		"key": "shift+tab",
+		"command": "workbench.action.previousEditor",
+		"when": "vim.mode == 'Normal'"
+	},
+	{
+		"key": "ctrl+6",
+		"command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+		"when": "vim.mode == 'Normal'"
+	},
+	{
+		"key": "ctrl+shift+6",
+		"command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+		"when": "vim.mode == 'Normal'"
+	},
 	// PANE MOVEMENT
 	{
 		"key": "ctrl+k",
@@ -36,26 +57,28 @@
 		"when": "vim.mode == 'Normal' && editorTextFocus"
 	},
 	// TERMINAL
+	// Editor Terminal
 	{
 		"key": "ctrl+t",
-		"command": "workbench.action.terminal.toggleTerminal",
-		"when": "terminal.active"
-	},
-	{
-		"key": "ctrl+shift+t",
 		"command": "workbench.action.terminal.new",
 		"when": "terminalProcessSupported"
 	},
-	{
-		"key": "ctrl+tab",
-		"command": "workbench.action.terminal.focusNext",
-		"when": "terminalFocus && terminalProcessSupported"
-	},
-	{
-		"key": "ctrl+shift+tab",
-		"command": "workbench.action.terminal.focusPrevious",
-		"when": "terminalFocus && terminalProcessSupported"
-	},
+	// Integrated Terminal
+	// {
+	// "key": "ctrl+t",
+	// "command": "workbench.action.terminal.toggleTerminal",
+	// "when": "terminal.active"
+	// },
+	// {
+	// "key": "ctrl+tab",
+	// "command": "workbench.action.terminal.focusNext",
+	// "when": "terminalFocus && terminalProcessSupported"
+	// },
+	// {
+	// "key": "ctrl+shift+tab",
+	// "command": "workbench.action.terminal.focusPrevious",
+	// "when": "terminalFocus && terminalProcessSupported"
+	// },
 	// FILE EXPLORER
 	// Opening explorer
 	{
@@ -121,6 +144,10 @@
 	},
 	// QUICK OPEN
 	{
+		"key": "ctrl+shift+p",
+		"command": "workbench.action.quickOpen"
+	},
+	{
 		"key": "ctrl+n",
 		"command": "workbench.action.quickOpenSelectNext",
 		"when": "inQuickOpen"
@@ -162,6 +189,11 @@
 		"key": "ctrl+n",
 		"command": "-workbench.action.files.newUntitledFile"
 	},
+	// Fuzzy Finder
+	{
+		"key": "ctrl+p",
+		"command": "-workbench.action.quickOpen"
+	},
 	// Terminal
 	{
 		"key": "ctrl+`",
@@ -172,5 +204,14 @@
 		"key": "ctrl+shift+`",
 		"command": "-workbench.action.terminal.new",
 		"when": "terminalProcessSupported"
+	},
+	// Editors
+	{
+		"key": "ctrl+tab",
+		"command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+	},
+	{
+		"key": "ctrl+shift+tab",
+		"command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup"
 	}
 ]

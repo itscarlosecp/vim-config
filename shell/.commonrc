@@ -2,6 +2,7 @@
 # Applications
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
+export BROWSER="wslview"
 
 # Others
 export HISTCONTROL="ignoreboth"

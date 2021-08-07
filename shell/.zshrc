@@ -1,12 +1,12 @@
 # Common Profile
 source $HOME/.commonrc
 
-export ZSH="$HOME/.oh-my-zsh"
-
 # Starship Prompt 
 eval "$(starship init zsh)"
 
-# ZSH Plugins (using oh-my-zsh)
-plugins=(
-	zsh-autosuggestions
-)
+# Plugins
+plugins+=(zsh-vi-mode)
+
+# Oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+source "$ZSH/oh-my-zsh.sh"

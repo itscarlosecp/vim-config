@@ -10,7 +10,7 @@ These files are designed to work in UNIX-based operating systems such as Linux a
 
 > ⚠️ Most of my folder structure is meant to be used with [GNU Stow](https://www.gnu.org/software/stow/). That's why you find nested folders inside some my dotfiles. To get to the actual config of the program you are looking for, you may have to navigate deeper into the file structure.
 
-You can find a very complete list of the programs I use on a day-to-day in [info.txt](https://github.com/itscarlosecp/.dotfiles/blob/main/README.md).
+You can find a very complete list of the programs I use on a day-to-day in [info.txt](https://github.com/itscarlosecp/.dotfiles/blob/main/info.txt).
 
 ## VSCode
 

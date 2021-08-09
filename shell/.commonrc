@@ -8,7 +8,7 @@ export BROWSER="wslview"
 export HISTCONTROL="ignoreboth"
 
 # Aliases
-alias fc="fc -e vi"
+# alias fc="fc -e vi"
 alias ..="cd .."
 alias ls="lsd"
 alias grep="grep --color=auto"

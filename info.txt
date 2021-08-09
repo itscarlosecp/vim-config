@@ -1,0 +1,38 @@
+Unix Utilities
+- bat       https://github.com/sharkdp/bat
+- fd        https://github.com/sharkdp/fd
+- fzf       https://github.com/junegunn/fzf
+- hyperfine https://github.com/sharkdp/hyperfine
+- jq        https://github.com/stedolan/jq
+- lsd       https://github.com/Peltoche/lsd
+- ripgrep   https://github.com/BurntSushi/ripgrep
+- glow      https://github.com/charmbracelet/glow
+- unzip
+- stow
+
+Text Editor
+- neovim https://github.com/neovim/neovim
+- VSCode https://code.visualstudio.com/
+
+Programming Tools
+- clang-format
+- gcc
+- gh        https://cli.github.com/
+- nvm       https://github.com/nvm-sh/nvm
+- prettierd https://github.com/itscarlosecp/prettierd
+
+
+Terminal & Shell
+- startship https://starship.rs/
+- kitty     https://github.com/kovidgoyal/kitty
+
+Random
+- cmatrix
+- cowsay
+- fortune
+- parrotsay https://github.com/matheuss/parrotsay
+
+Aesthetics
+- Font: Cascadia Code                	 https://github.com/microsoft/cascadia-code
+- Font (fallback): CaskyaidaCove NF 	 https://github.com/ryanoasis/nerd-fonts
+- Font (alternative): JetBrainsMono NF https://github.com/ryanoasis/nerd-fonts

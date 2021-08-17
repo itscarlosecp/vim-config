@@ -60,8 +60,22 @@ keys = [
     # Qtile Actions
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "q", lazy.shutdown()),
-    # Run command
-    Key([mod], "p", lazy.spawncmd())
+    # Run Command
+    Key([mod], "p", lazy.spawncmd()),
+
+    # Media Keys
+    # Volumne Control
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse set Master 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse set Master 5%-")),
+    Key([], "XF86AudioMute",        lazy.spawn("amixer -D pulse set Master 1+ toggle")),
+
+    # Play/Pause Keys
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+
+    # PrintScr Key
+    Key([], "Print", lazy.spawn("flameshot gui")),
 ]
 
 

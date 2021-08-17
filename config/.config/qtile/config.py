@@ -14,10 +14,11 @@ terminal = "kitty"
 
 ### CONFIG VARIABLES ###
 # Custom varibles referenced in my custom config
-border_focus_color = "#d75f5f"
+border_focus_color  = "#d75f5f"
 border_normal_color = "#d75f5f"
 border_width = 2
 gaps_size = 8
+
 
 ### GLOBAL SETTINGS ###
 # Qtile's global settings
@@ -109,9 +110,35 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+### SCREENS ###
 screens = [
+    # Laptop Screen
     Screen(
-        bottom=bar.Bar(
+        bottom = bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                widget.TextBox("default config", name="default"),
+                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.Systray(),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.QuickExit(),
+            ],
+            24,
+        ),
+    ),
+    # External Monitor
+    Screen(
+        bottom = bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),

@@ -1,9 +1,11 @@
 ### IMPORTS ###
 from typing import List
+import subprocess
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+
 
 
 ### QTILE VARIABLES ###
@@ -12,19 +14,31 @@ mod = "mod4"
 terminal = "kitty"
 
 
+
 ### CONFIG VARIABLES ###
 # Custom varibles referenced in my custom config
 border_focus_color  = "#d75f5f"
 border_normal_color = "#d75f5f"
 border_width = 2
-gaps_size = 8
+gaps_size = 12
+
+date_format = "%A, %d %B %Y - %H:%M"
+statusline_fg_color = "#dddddd"
+statusline_bg_color = "#171717"
+
+statusline_active_fg_color = statusline_fg_color
+statusline_active_bg_color = "#d75f5f"
+statusline_inactive_fg_color = "#666666"
+statusline_inactive_bg_color = "#1f1f1f"
 
 
 ### GLOBAL SETTINGS ###
 # Qtile's global settings
 auto_fullscreen   = True  # If an app request fullscreen it is automatically fullscreened.
 bring_front_click = False # Bring floating app to the front on click.
+follow_mouse_focus = True # Focus on hover
 cursor_warp       = False
+
 
 
 ### KEYMAPPINGS ###
@@ -61,7 +75,10 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "q", lazy.shutdown()),
     # Run Command
-    Key([mod], "p", lazy.spawncmd()),
+    # Using Dmenu to run commands
+    Key([mod], "p", lazy.run_extension(extension.DmenuRun(
+        background = statusline_bg_color
+        ))),
 
     # Media Keys
     # Volumne Control
@@ -79,12 +96,14 @@ keys = [
 ]
 
 
+
 ### GROUPS ###
 # Qtiles workspeces
 # Define group names and settings
 group_names = [
-        ("WWW", {"layout": "monadtall"}),
-        ("DEV", {"layout": "monadtall"}),
+        ("  DEV", {"layout": "monadtall"}),
+        ("  BRWSR", {"layout": "monadtall"}),
+        ("  SPTFY", {"layout": "monadtall"}),
         ]
 
 # Register groups
@@ -96,8 +115,9 @@ for i,(name,kwargs) in enumerate(group_names, 1):
         # Visit specified group
         Key([mod], str(i), lazy.group[name].toscreen()),
         # Send current window to specified group
-        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group=True)),
+        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group = True)),
     ])
+
 
 
 ### LAYOUTS ###
@@ -117,6 +137,9 @@ layouts = [
 ]
 
 
+
+### SCREENS ###
+# Widget Defaults
 widget_defaults = dict(
     font = "sans",
     fontsize = 14,
@@ -124,55 +147,39 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+# Widget List
+widget_list = [
+        widget.Sep(
+            linewidth = 0,
+            padding = 6,
+            foreground = statusline_fg_color,
+            background = statusline_bg_color,
+            ),
+        widget.GroupBox(
+            foreground = statusline_fg_color,
+            background = statusline_bg_color,
+            highlight_method = "block",
+            inactive = statusline_inactive_fg_color,
+            rounded = False,
 
-### SCREENS ###
+            # Current Screen Focused
+            this_current_screen_border = statusline_active_bg_color,
+            # Others Screens Unfocused but Visible
+            other_screen_border = statusline_inactive_bg_color,
+            ),
+        widget.WindowName(
+            background = statusline_bg_color,
+            ),
+        widget.CurrentLayout(),
+        widget.Systray(),
+        widget.Clock(format = date_format),
+        widget.QuickExit(),
+        ]
+
 screens = [
     # Laptop Screen
-    Screen(
-        bottom = bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
-    ),
-    # External Monitor
-    Screen(
-        bottom = bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
-    ),
+    Screen(top = bar.Bar(widget_list.copy(), 24)),
+    Screen(top = bar.Bar(widget_list.copy(), 24)),
 ]
 
 # Drag floating layouts.
@@ -185,7 +192,6 @@ mouse = [
 ]
 
 dgroups_app_rules = []  # type: List
-follow_mouse_focus = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
@@ -212,3 +218,15 @@ auto_minimize = True
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java"s whitelist.
 wmname = "LG3D"
+
+
+### STARTUP ###
+# Autostart processes
+@hook.subscribe.startup_once
+def autostart():
+    processes = [
+            ["nitrogen", "--restore"],
+            ]
+
+    for proc in processes:
+        subprocess.Popen(proc)

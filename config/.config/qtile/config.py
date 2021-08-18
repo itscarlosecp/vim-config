@@ -17,20 +17,15 @@ terminal = "kitty"
 
 ### CONFIG VARIABLES ###
 # Custom varibles referenced in my custom config
-border_focus_color  = "#d75f5f"
-border_normal_color = "#d75f5f"
+fg       = "#dddddd"
+bg0      = "#171717"
+active   = "#978771"
+inactive = "#666666"
+
 border_width = 2
-gaps_size = 12
+gaps_size    = 12
 
-date_format = "%A, %d %B %Y - %H:%M"
-statusline_fg_color = "#dddddd"
-statusline_bg_color = "#171717"
-
-statusline_active_fg_color = statusline_fg_color
-statusline_active_bg_color = "#d75f5f"
-statusline_inactive_fg_color = "#666666"
-statusline_inactive_bg_color = "#1f1f1f"
-
+date_format = "  %d/%m/%y - %H:%M"
 
 ### GLOBAL SETTINGS ###
 # Qtile's global settings
@@ -77,7 +72,7 @@ keys = [
     # Run Command
     # Using Dmenu to run commands
     Key([mod], "p", lazy.run_extension(extension.DmenuRun(
-        background = statusline_bg_color
+        background = bg0
         ))),
 
     # Media Keys
@@ -100,10 +95,22 @@ keys = [
 ### GROUPS ###
 # Qtiles workspeces
 # Define group names and settings
+# You can get a window class with `xprop`
 group_names = [
-        ("  DEV", {"layout": "monadtall"}),
-        ("  BRWSR", {"layout": "monadtall"}),
+        ("  DEV",   {
+            "layout": "monadtall",
+            "matches": [Match(wm_class="kitty")]
+            }),
+        ("  BRWSR", {
+            "layout": "monadtall",
+            "matches": [Match(wm_class="brave-browser")]
+            }),
+        ("  MSG",   {"layout": "monadtall"}),
         ("  SPTFY", {"layout": "monadtall"}),
+        ("  OBS", {
+            "layout": "monadtall",
+            "matches": [Match(wm_class="obs")]
+            }),
         ]
 
 # Register groups
@@ -123,8 +130,8 @@ for i,(name,kwargs) in enumerate(group_names, 1):
 ### LAYOUTS ###
 # Configs for every layout
 layout_theme = {
-        "border_focus":  border_focus_color,
-        "border_normal": border_normal_color,
+        "border_focus":  active,
+        "border_normal": inactive,
         "border_width":  border_width,
         "margin": gaps_size
         }
@@ -141,6 +148,8 @@ layouts = [
 ### SCREENS ###
 # Widget Defaults
 widget_defaults = dict(
+    foreground = fg,
+    background = bg0,
     font = "sans",
     fontsize = 14,
     padding = 4,
@@ -150,30 +159,50 @@ extension_defaults = widget_defaults.copy()
 # Widget List
 widget_list = [
         widget.Sep(
-            linewidth = 0,
-            padding = 6,
-            foreground = statusline_fg_color,
-            background = statusline_bg_color,
+            linewidth  = 0,
+            padding    = 6,
             ),
         widget.GroupBox(
-            foreground = statusline_fg_color,
-            background = statusline_bg_color,
+            # Whole Widget
             highlight_method = "block",
-            inactive = statusline_inactive_fg_color,
             rounded = False,
+            margin = 3,
 
-            # Current Screen Focused
-            this_current_screen_border = statusline_active_bg_color,
-            # Others Screens Unfocused but Visible
-            other_screen_border = statusline_inactive_bg_color,
+            # Group-specifics
+            active = fg,
+            inactive = inactive,
+            # Current Screen: Focused
+            this_current_screen_border = active,
+            # Current Screen: Unfocused
+            # Groups visibles in screens that don't have focus
+            this_screen_border = bg0,
+            # Others Screens: Focused
+            other_current_screen_border = active,
+            # Others Screens: Hidden
+            other_screen_border = bg0,
             ),
         widget.WindowName(
-            background = statusline_bg_color,
+            foreground = inactive,
+            for_current_screen = True
             ),
-        widget.CurrentLayout(),
+        widget.CurrentLayout(
+            fmt = "   {}"
+            ),
         widget.Systray(),
         widget.Clock(format = date_format),
-        widget.QuickExit(),
+        widget.Volume(fmt = "  {}"),
+        widget.Battery(fmt = " {}"),
+        widget.QuickExit(
+            font = "CaskaydiaCove Nerd Font",
+            fmt = "[襤 EXIT]",
+            padding = 3,
+            countdown_start = 0,
+            foreground = active
+            ),
+        widget.Sep(
+            linewidth  = 0,
+            padding    = 6,
+            ),
         ]
 
 screens = [
@@ -195,12 +224,12 @@ dgroups_app_rules = []  # type: List
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
-    Match(wm_class="confirmreset"),  # gitk
-    Match(wm_class="makebranch"),  # gitk
-    Match(wm_class="maketag"),  # gitk
-    Match(wm_class="ssh-askpass"),  # ssh-askpass
-    Match(title="branchdialog"),  # gitk
-    Match(title="pinentry"),  # GPG key password entry
+    Match(wm_class = "confirmreset"),  # gitk
+    Match(wm_class = "makebranch"),  # gitk
+    Match(wm_class = "maketag"),  # gitk
+    Match(wm_class = "ssh-askpass"),  # ssh-askpass
+    Match(title = "branchdialog"),  # gitk
+    Match(title = "pinentry"),  # GPG key password entry
 ])
 focus_on_window_activation = "smart"
 reconfigure_screens = True

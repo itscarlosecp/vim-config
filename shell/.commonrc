@@ -12,6 +12,9 @@ export HISTCONTROL="ignoreboth"
 alias ..="cd .."
 alias ls="lsd"
 alias grep="grep --color=auto"
+function brightness() {
+    xrandr --output $1 --brightness $2
+}
 
 # Quick Access
 alias neovim="cd $HOME/.config/nvim"

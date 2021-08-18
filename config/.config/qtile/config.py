@@ -24,17 +24,18 @@ inactive = "#666666"
 
 font_size = 14
 bar_height = 24
-border_width = 2
+border_width = 4
 gaps_size    = 12
 
 date_format = "  %d/%m/%y - %H:%M"
 
 ### GLOBAL SETTINGS ###
 # Qtile's global settings
-auto_fullscreen   = True  # If an app request fullscreen it is automatically fullscreened.
-bring_front_click = False # Bring floating app to the front on click.
+auto_fullscreen    = True  # If an app request fullscreen it is automatically fullscreened.
+auto_minimize      = True
+bring_front_click  = False # Bring floating app to the front on click.
 follow_mouse_focus = True # Focus on hover
-cursor_warp       = False
+cursor_warp        = False
 
 
 
@@ -46,20 +47,23 @@ keys = [
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
 
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    # Each layout has it's own keybinds and callbacks
+    # Reference: http://docs.qtile.org/en/latest/manual/ref/layouts.html#monadtall
+    # (My) Main layout: MonadTall
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
 
-    # Grow windows
-    Key([mod, "control"], "h", lazy.layout.grow_left()),
-    Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "j", lazy.layout.grow_down()),
-    Key([mod, "control"], "k", lazy.layout.grow_up()),
-    # Reset windows size
-    Key([mod], "0", lazy.layout.normalize()),
+    # Resize windows
+    Key([mod], "i", lazy.layout.grow()),
+    Key([mod], "m", lazy.layout.shrink()),
+    Key([mod], "o", lazy.layout.maximize()),
+
+    # Toggle floating and fullscreen for only one window
+    # Reference: http://docs.qtile.org/en/latest/manual/config/lazy.html 
+    Key([mod], "f", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
 
     # Terminal
     Key([mod], "Return", lazy.spawn(terminal)),
@@ -106,7 +110,6 @@ keys = [
 group_names = [
         ("  DEV",   {
             "layout": "monadtall",
-            "matches": [Match(wm_class = "kitty")]
             }),
         ("  BRWSR", {
             "layout": "monadtall",
@@ -145,7 +148,7 @@ for i,(name,kwargs) in enumerate(group_names, 1):
         # Visit specified group
         Key([mod], str(i), lazy.group[name].toscreen()),
         # Send current window to specified group
-        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group = True)),
+        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group = False)),
     ])
 
 
@@ -161,9 +164,9 @@ layout_theme = {
 
 # Layout definitions
 layouts = [
+    layout.Max(),
     layout.MonadTall(**layout_theme),
     layout.Floating(**layout_theme),
-    layout.Max(),
 ]
 
 
@@ -217,7 +220,7 @@ widget_list = [
             font = "CaskaydiaCove Nerd Font",
             fmt = "[襤 EXIT]",
             padding = 3,
-            countdown_start = 0,
+            countdown_start = 0.1,
             foreground = active
             ),
         widget.Sep(
@@ -251,23 +254,13 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class = "ssh-askpass"),  # ssh-askpass
     Match(title    = "branchdialog"), # gitk
     Match(title    = "pinentry"),     # GPG key password entry
+
+    Match(role = "pop-up"),
 ])
 focus_on_window_activation = "smart"
 reconfigure_screens = True
-
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
-auto_minimize = True
-
-# XXX: Gasp! We"re lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn"t work correctly. We may as well just lie
-# and say that we"re a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java"s whitelist.
 wmname = "LG3D"
+
 
 
 ### STARTUP ###

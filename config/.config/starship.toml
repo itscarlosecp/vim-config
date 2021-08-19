@@ -36,12 +36,12 @@ disabled = false
 format = '[$all_status$ahead_behind]($style) '
 ahead = ' '
 behind = ' '
-# deleted = ' '
-# diverged = ''
-# modified = '𥉉 '
-# renamed = 'ﱴ'
-# staged = '落'
-# untracked = 'ﬤ '
+deleted = 'D'
+diverged = 'V'
+modified = 'M'
+renamed = 'R'
+staged = 'S'
+untracked = 'U'
 style = '#CE9178'
 
 [golang]

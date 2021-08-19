@@ -12,6 +12,9 @@ export HISTCONTROL="ignoreboth"
 alias ..="cd .."
 alias ls="lsd"
 alias grep="grep --color=auto"
+function brightness() {
+    xrandr --output $1 --brightness $2
+}
 
 # Quick Access
 alias neovim="cd $HOME/.config/nvim"
@@ -30,5 +33,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Startup
-# fortune -l | parrotsay
+ #fortune -l | parrotsay
+
+# LD_PRELOAD="/usr/lib/spotifywm.so" "/usr/bin/spotify"
  

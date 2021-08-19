@@ -1,0 +1,275 @@
+### IMPORTS ###
+from typing import List
+import subprocess
+
+from libqtile import bar, layout, widget, hook, extension
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+
+
+
+### QTILE VARIABLES ###
+# Variables that are used in qtile's default config
+mod = "mod4"
+terminal = "kitty"
+
+
+
+### CONFIG VARIABLES ###
+# Custom varibles referenced in my custom config
+fg       = "#dddddd"
+bg      = "#171717"
+active   = "#978771"
+inactive = "#666666"
+
+font_size = 14
+bar_height = 24
+border_width = 4
+gaps_size    = 12
+
+date_format = "  %d/%m/%y - %H:%M"
+
+### GLOBAL SETTINGS ###
+# Qtile's global settings
+auto_fullscreen    = True  # If an app request fullscreen it is automatically fullscreened.
+auto_minimize      = True
+bring_front_click  = False # Bring floating app to the front on click.
+follow_mouse_focus = True # Focus on hover
+cursor_warp        = False
+
+
+
+### KEYMAPPINGS ###
+keys = [
+    # Switch between windows
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "l", lazy.layout.right()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+
+    # Each layout has it's own keybinds and callbacks
+    # Reference: http://docs.qtile.org/en/latest/manual/ref/layouts.html#monadtall
+    # (My) Main layout: MonadTall
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+
+    # Resize windows
+    Key([mod], "i", lazy.layout.grow()),
+    Key([mod], "m", lazy.layout.shrink()),
+    Key([mod], "o", lazy.layout.maximize()),
+
+    # Toggle floating and fullscreen for only one window
+    # Reference: http://docs.qtile.org/en/latest/manual/config/lazy.html 
+    Key([mod], "f", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
+
+    # Terminal
+    Key([mod], "Return", lazy.spawn(terminal)),
+
+    # Toggle between different layouts as defined below
+    Key([mod], "space", lazy.next_layout()),
+    Key([mod, "shift"], "c", lazy.window.kill()),
+
+    # Qtile Actions
+    Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "q", lazy.shutdown()),
+    # Run Command
+    # Using Dmenu to run commands
+    Key([mod], "p", lazy.run_extension(extension.DmenuRun(
+        foreground = inactive,
+        background = bg,
+        selected_background = active,
+        selected_foreground = fg,
+        fontsize = 11,
+        dmenu_ignorecase = True,
+        ))),
+
+    # Media Keys
+    # Volumne Control
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse set Master 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse set Master 5%-")),
+    Key([], "XF86AudioMute",        lazy.spawn("amixer -D pulse set Master 1+ toggle")),
+
+    # Play/Pause Keys
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+
+    # PrintScr Key
+    Key([], "Print", lazy.spawn("flameshot gui")),
+]
+
+
+
+### GROUPS ###
+# Qtiles workspeces
+# Define group names and settings
+# You can get a window class with `xprop`
+group_names = [
+        ("  DEV",   {
+            "layout": "monadtall",
+            }),
+        ("  BRWSR", {
+            "layout": "monadtall",
+            "matches": [Match(wm_class = "brave-browser")]
+            }),
+        ("  MSG",   {
+            "layout": "monadtall",
+             "matches": [
+                 Match(wm_class = "discord"),
+                 Match(wm_class = "slack"),
+                 Match(wm_class = "whatsapp-nativefier-d40211"),
+                 ]
+            }),
+        ("  DOCS", {
+            "layout": "monadtall",
+            }),
+        ("  SPTFY", {
+            "layout": "monadtall",
+             "matches": [Match(wm_class = "spotify")]
+            }),
+        ("  OBS", {
+            "layout": "monadtall",
+            "matches": [Match(wm_class = "obs")]
+            }),
+        ("  SNDBX", {
+            "layout": "monadtall",
+            }),
+        ]
+
+# Register groups
+groups = [Group(name, **kwargs) for name,kwargs in group_names]
+
+# Register keybinds to use activeted groups
+for i,(name,kwargs) in enumerate(group_names, 1):
+    keys.extend([
+        # Visit specified group
+        Key([mod], str(i), lazy.group[name].toscreen()),
+        # Send current window to specified group
+        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group = False)),
+    ])
+
+
+
+### LAYOUTS ###
+# Configs for every layout
+layout_theme = {
+        "border_focus":  active,
+        "border_normal": inactive,
+        "border_width":  border_width,
+        "margin": gaps_size
+        }
+
+# Layout definitions
+layouts = [
+    layout.Max(),
+    layout.MonadTall(**layout_theme),
+    layout.Floating(**layout_theme),
+]
+
+
+
+### SCREENS ###
+# Widget Defaults
+widget_defaults = dict(
+    foreground = fg,
+    background = bg,
+    font       = "sans",
+    fontsize   = font_size,
+    padding    = 4,
+)
+extension_defaults = widget_defaults.copy()
+
+# Widget List
+widget_list = [
+        widget.Sep(
+            linewidth  = 0,
+            padding    = 6,
+            ),
+        widget.GroupBox(
+            # Whole Widget
+            highlight_method = "block",
+            rounded = False,
+            margin = 3,
+
+            # Group-specifics
+            active = fg,
+            inactive = inactive,
+            # Current Screen: Focused
+            this_current_screen_border = active,
+            # Current Screen: Unfocused
+            # Groups visibles in screens that don't have focus
+            this_screen_border = bg,
+            # Others Screens: Focused
+            other_current_screen_border = active,
+            # Others Screens: Hidden
+            other_screen_border = bg,
+            ),
+        widget.WindowName(for_current_screen = True),
+        widget.CurrentLayout(fmt = "   {}"),
+        widget.Systray(),
+        widget.Clock(format = date_format),
+        widget.Volume(
+            fmt = "  {}",
+            update_interval = 0.1,
+            ),
+        widget.Battery(fmt = " {}"),
+        widget.QuickExit(
+            font = "CaskaydiaCove Nerd Font",
+            fmt = "[襤 EXIT]",
+            padding = 3,
+            countdown_start = 0.1,
+            foreground = active
+            ),
+        widget.Sep(
+            linewidth  = 0,
+            padding    = 6,
+            ),
+        ]
+
+screens = [
+    # Laptop Screen
+    Screen(top = bar.Bar(widget_list.copy(), bar_height)),
+    Screen(top = bar.Bar(widget_list.copy(), bar_height)),
+]
+
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start = lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start = lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
+]
+
+dgroups_app_rules = []  # type: List
+floating_layout = layout.Floating(float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
+    Match(wm_class = "confirmreset"), # gitk
+    Match(wm_class = "makebranch"),   # gitk
+    Match(wm_class = "maketag"),      # gitk
+    Match(wm_class = "ssh-askpass"),  # ssh-askpass
+    Match(title    = "branchdialog"), # gitk
+    Match(title    = "pinentry"),     # GPG key password entry
+
+    Match(role = "pop-up"),
+])
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+wmname = "LG3D"
+
+
+
+### STARTUP ###
+# Autostart processes
+@hook.subscribe.startup_once
+def autostart():
+    processes = [
+            ["nitrogen", "--restore"],
+            ]
+
+    for proc in processes:
+        subprocess.Popen(proc)
